@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Інформаційний </title>
+  <style>
+    /* Стилі для заголовків */
+    h1 {
+      color: #333;
+      font-size: 24px;
+      text-align: center;
+      margin-top: 50px;
+    }
+    
+    /* Стилі для меню навігації */
+    nav {
+      background-color: #333;
+      text-align: center;
+      padding: 10px 0;
+    }
+    
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+    
+    nav a:hover {
+      background-color: #555;
+    }
+    
+    /* Стилі для основного вмісту */
+    .content {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      animation: slide-in 1s forwards;
+    }
+    
+    @keyframes slide-in {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    /* Стилі для вікна реєстрації */
+    .registration-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+    }
+    
+    .registration-modal-content {
+      background-color: #fff;
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      border-radius: 5px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Інформаційний сайт</h1>
+    <nav>
+      <a href="#section1" onclick="toggleSection('section1')">Розділ 1</a>
+      <a href="#section2" onclick="toggleSection('section2')">Розділ 2</a>
+      <a href="#section3" onclick="toggleSection('section3')">Розділ 3</a>
+      <a href="#section4" onclick="toggleSection('section4')">Розділ 4</a>
+      <a href="#section5" onclick="toggleSection('section5')">Розділ 5</a>
+    </nav>
+  </header>
+  
+  <div id="section1" class="content">
+    <h2>Розділ 1</h2>
+    <p>Тут розміщено інформацію для першого розділу.</p>
+  </div>
+  <div id="section2" class="content">
+    <h2>Розділ 2</h2>
+    <p>Тут розміщено інформацію для другого розділу.</p>
+  </div>
+  <div id="section3" class="content">
+    <h2>Розділ 3</h2>
+    <p>Тут розміщено інформацію для третього розділу.</p>
+  </div>
+  <div id="section4" class="content">
+    <h2>Розділ 4</h2>
+    <p>Тут розміщено інформацію для четвертого розділу.</p>
+  </div>
+  <div id="section5" class="content">
+    <h2>Розділ 5</h2>
+    <p>Тут розміщено інформацію для п'ятого розділу.</p>
+  </div>
+  <div class="registration-modal" id="registrationModal">
+    <div class="registration-modal-content">
+      <h2>Вікно реєстрації</h2>
+      <p>Тут розміщено форму реєстрації.</p>
+      <button onclick="toggleModal()">Закрити</button>
+    </div>
+  </div>
+  <script>
+    // Анімація при прокрутці
+    window.addEventListener('scroll', scrollAnimation);
+    
+    function scrollAnimation() {
+      var elements = document.getElementsByClassName('content');
+      
+      for (var i = 0; i < elements.length; i++) {
+        var element = elements[i];
+        var position = element.getBoundingClientRect().top;
+        var windowHeight = window.innerHeight;
+        
+        if (position < windowHeight) {
+          element.style.opacity = 1;
+          element.style.transform = 'translateX(0)';
+        }
+      }
+    }
+    
+    // Перемикання розділів при натисканні на навігаційні кнопки
+    function toggleSection(sectionId) {
+      var sections = document.getElementsByClassName('content');
+      
+      for (var i = 0; i < sections.length; i++) {
+        sections[i].style.display = 'none';
+      }
+      
+      var section = document.getElementById(sectionId);
+      section.style.display = 'block';
+    }
+    
+    // Перемикання вікна реєстрації
+    function toggleModal() {
+      var modal = document.getElementById('registrationModal');
+      
+      if (modal.style.display === 'block') {
+        modal.style.display = 'none';
+      } else {
+        modal.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
